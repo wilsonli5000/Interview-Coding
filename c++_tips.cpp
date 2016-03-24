@@ -103,3 +103,68 @@ OOP concepts:
 
 4. Polynophism: C++ supports two kinds of Polynophism: override function and virtual function. Allows subclasses to have the same behavior in a different way.
 
+
+//// Section 3: Namespace ////
+
+Purpose: avoid naming conflicts. We can create our own namespace. 
+
+e.g namespace LI{
+  ...
+}
+
+If we have "using namespace std" in the begining, no need to use std::func() in the body.
+
+We can also declair class in the namespace.
+
+//// Section 4: Memory Allocation ////
+
+In C, use malloc to allocate memory.
+
+In C++, use new() to allocate and delete() to freee memory.
+
+eg. int *p = new int;   //alloc one int memory
+    delete p;
+
+    int *p = new int[10] // alloc 10 int memory, p pointing to the head of array.
+    delete[] p;
+
+//// Section five: basic concepts ////
+
+Overloading: functions can have the same name but diffrent parameter sets. You can't have two functions only differ in return types. 
+
+Difference between struct and class in C++: They are basically the same in C++, but the default access right of variables is public in struct, while it's private in class.
+
+Constructer in class: we can use variable initalize table to initialize variable values. eg. Book::Book(int i, int j): page(i), index(j) {}. The main function of this is to initilize a const variable. If we define a const variable in class, then we can only initialize in this way. 
+
+Static variable and function: If the variable or function is static, then it belongs to the class and is shared with all instances. The initalization of static variable must be outside the declaration of class. But we can still define static function name in the class body. 
+
+Friend class: we can define friend class in another class. We can then access to any variables and functions in the friend class. But friend class violates the encapsulation rule, therefore try not to use it. 
+
+//// Section six: pointer ////
+
+Pointer stores the address of a variable with a specific type.
+
+Pinter array: int *ptr[num]; This statement declairs an array which has "num" number of pointers. Each element in the array is an integer pointer. Therefore, when initate the value of the array, we have to do this:
+
+for (int i = 0; i  < num; i++)
+  ptr[i] = &var[i];
+
+where var is another integer array. 
+
+Or normally, we use a char pointer array to initate a string list: 
+char *names[max] = {"1", "2", "3"};
+
+In this case, each element in the array is pointing to a string and there is no need to use * to access the value of the string. 
+
+Pointer of pointer: The basic logic is the same. We can easily use this technique to create a two dimensional array. 
+
+eg. 
+int **ptr;
+ptr = new int*[5]   //this will create an array with 5 int pointers to ptr. Then ptr is pointing to the first pointer in the array.
+for (int i = 0; i < 5; i++)
+  ptr[i] = new int[5];    //this actually creates an int array in for each pointer in the pointer array. Therefore, by now, ptr is pointing to 5 sub-pointers, each sub-pointer points to an array with 5 elements. 
+
+
+
+
+

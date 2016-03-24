@@ -35,5 +35,5 @@ int climbStairs(int n){
 
 
 int main(){
-	cout << climbStairs(5) << "\n";
+	cout << climbStairs(30) << "\n";
 }

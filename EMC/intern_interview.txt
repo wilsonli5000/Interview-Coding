@@ -1,0 +1,9 @@
+Focus on basic questions.
+
+Basic C++ programming techniques. Pointers, tree.
+
+Basic data structure theories.
+
+Q1. How to swap two variables without creating a third variable.
+
+SQL.
