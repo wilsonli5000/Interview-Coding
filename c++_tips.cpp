@@ -166,5 +166,7 @@ for (int i = 0; i < 5; i++)
 
 
 
+//// Section seven: coding tips ////
 
+Switch clouse doesn't support string type for determination. 
 
