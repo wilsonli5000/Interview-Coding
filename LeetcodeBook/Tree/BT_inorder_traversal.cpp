@@ -5,7 +5,7 @@
 using namespace std;
 
 /*
-	Data part of root first.
+	Left tree first, then root, then right tree.
 	Time complexity: O(n)
 	Space complexity: O(n)
 
@@ -47,19 +47,22 @@ TreeNode* defineTree(){
 vector<int> preorder(TreeNode* root){
 	vector<int> ans;
 	if (!root) return ans;
-	TreeNode* cur;
+	TreeNode* cur = root;
 	stack<TreeNode*> stack;
-	stack.push(root);
 
-	while (!stack.empty()){
-		cur = stack.top();
-		stack.pop();
-		ans.push_back(cur->val);
-		// Because stack is FILO, we push right node first.
-		if (cur->right)
-			stack.push(cur->right);
-		if (cur->left)
-			stack.push(cur->left);
+	while (!stack.empty() || cur){
+		if (cur){
+			// Save all the root nodes for use.
+			stack.push(cur);
+			cur = cur->left;
+		}
+		else{
+			// when we reach the leaf node, we start to save the value and travel to right trees.
+			cur = stack.top();
+			stack.pop();
+			ans.push_back(cur->val);
+			cur = cur->right;
+		}
 	}
 	return ans;
 }

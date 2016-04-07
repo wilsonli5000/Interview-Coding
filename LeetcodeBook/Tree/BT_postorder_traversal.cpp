@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <algorithm>
 
 using namespace std;
 
 /*
-	Data part of root first.
+	Left tree, then right tree, then root.
 	Time complexity: O(n)
 	Space complexity: O(n)
 
@@ -44,7 +45,8 @@ TreeNode* defineTree(){
 	return root;
 }
 
-vector<int> preorder(TreeNode* root){
+// Do it smartly, do a preorder traversal but with right nodes first, then reverse the whole vector.
+vector<int> postorder(TreeNode* root){
 	vector<int> ans;
 	if (!root) return ans;
 	TreeNode* cur;
@@ -55,12 +57,13 @@ vector<int> preorder(TreeNode* root){
 		cur = stack.top();
 		stack.pop();
 		ans.push_back(cur->val);
-		// Because stack is FILO, we push right node first.
-		if (cur->right)
-			stack.push(cur->right);
+		// Here push left child node first.
 		if (cur->left)
 			stack.push(cur->left);
+		if (cur->right)
+			stack.push(cur->right);
 	}
+	reverse(ans.begin(), ans.end());
 	return ans;
 }
 
@@ -68,6 +71,6 @@ vector<int> preorder(TreeNode* root){
 
 int main(){
 	TreeNode* root = defineTree();
-	vector<int> ans = preorder(root);
+	vector<int> ans = postorder(root);
 	printVectorInt(ans);
 }
